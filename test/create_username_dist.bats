@@ -13,7 +13,8 @@ setup() {
 
 # Remove the temporary scratch directory to clean up after ourselves.
 teardown() {
-  rm -rf "$BATS_TMPDIR"
+  #rm -rf "$BATS_TMPDIR" #we'll put this back in later
+  echo hello world 2
 }
 
 # If this test fails, your script file doesn't exist, or there's
@@ -38,6 +39,10 @@ teardown() {
 # for the pie chart for the username data from discovery and velcro.
 @test "bin/create_username_dist.sh generates correct simple output" {
   run bin/create_username_dist.sh "$BATS_TMPDIR"
+  tree "$BATS_TMPDIR" #we added this, delete me if you dare
+  cat test/username_dist.html #see above
+  cat "$BATS_TMPDIR"/username_dist.html ###############
+  diff test/username_dist.html "$BATS_TMPDIR"/username_dist.html
   run diff -wbB test/username_dist.html "$BATS_TMPDIR"/username_dist.html
   [ "$status" -eq 0 ]
 }

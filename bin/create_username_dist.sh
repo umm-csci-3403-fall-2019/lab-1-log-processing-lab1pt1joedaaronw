@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "please help me"
 echo $0
 echo $1
 rm -rf username_dist.txt
@@ -11,7 +12,8 @@ do
 	cat $file >> bestfilenameever.txt
 done
 echo bestfilenameever.txt
-awk '{count[$4]++} END {for (username in count) print "data.addRow([\x27"username"\x27,"count[username]"]);"}' bestfilenameever.txt > username_dist.txt
+awk '{printf $4"\n"}' bestfilenameever.txt > username_dist.txt
+sort "username_dist.txt" | uniq -c >> username_dist.txt
 echo username_dist.txt
-bin/wrap_contents.sh username_dist.txt "username_dist" username_dist.html
+bin/wrap_contents.sh username_dist.txt "username_dist" $1/username_dist.html
 echo username_dist.html
