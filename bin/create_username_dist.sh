@@ -9,3 +9,5 @@ do
 done
 awk '{print $4}' bestfilenameever.txt | sort -fs | uniq -c | awk '{print "data.addRow([\x27"$2"\x27, "$1"]);"}' > username_dist.txt
 bin/wrap_contents.sh username_dist.txt "username_dist" $1/username_dist.html
+rm -rf bestfilenameever.txt
+rm -rf username_dist.txt
