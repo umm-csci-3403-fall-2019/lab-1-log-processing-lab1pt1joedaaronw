@@ -38,6 +38,6 @@ teardown() {
 # for the bar chart for the hour data from discovery and velcro.
 @test "bin/create_hours_dist.sh generates correct simple output" {
   run bin/create_hours_dist.sh "$BATS_TMPDIR"
-  run diff -wbB test/hours_dist.html "$BATS_TMPDIR"/hours_dist.html
+  run  diff -wbB test/hours_dist.html "$BATS_TMPDIR"/hours_dist.html
   [ "$status" -eq 0 ]
 }
